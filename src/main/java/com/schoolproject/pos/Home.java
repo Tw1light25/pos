@@ -4,6 +4,14 @@
  */
 package com.schoolproject.pos;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author BIGMAN
@@ -11,6 +19,7 @@ package com.schoolproject.pos;
 public class Home extends javax.swing.JFrame {
     
     JpanelLoader jpload = new JpanelLoader();
+    private DefaultTableModel model;
     /**
      * Creates new form pos
      */
@@ -172,8 +181,40 @@ public class Home extends javax.swing.JFrame {
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         // TODO add your handling code here:
+        try{
+            File csvFile = new File("sales.csv");
+            model = loadCSVToTable(csvFile);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+           
+       Transaction transac = new Transaction(model);
+        jpload.jPanelLoader(panel_load, transac);
+         
+        
+        
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
+    private DefaultTableModel loadCSVToTable(File file) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        Vector <String> columns = new Vector<>();
+        Vector <Vector<String>> data = new Vector<>();
+        boolean isHeader = true;
+        while ((line = br.readLine()) != null) {
+            String [] values = line.split(",");
+            Vector <String> row = new Vector <> (Arrays.asList(values));
+            if (isHeader) {
+                columns = row;
+                isHeader = false;
+            } else {
+                data.add(row);
+            }
+        }
+        br.close();
+        return new DefaultTableModel (data, columns);
+    }
     /**
      * @param args the command line arguments
      */
