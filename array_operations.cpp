@@ -22,43 +22,53 @@ int main() {
         cout << "Choose (1-10): ";
         cin >> choice;
 
-        // Handle user choice
-        if(choice == 1) {
-            int index;
-            cout << "Enter position (0-4): ";
-            cin >> index;
-            if(index >= 0 && index < 5) {
-                cout << "Element at position " << index << " is: " << arr[index] << endl;
-            } else {
-                cout << "Wrong position! Use 0 to 4 only\n";
+        // Handle user choice using switch
+        switch(choice) {
+            case 1: {
+                int index;
+                cout << "Enter position (0-4): ";
+                cin >> index;
+                switch(index) {
+                    case 0: case 1: case 2: case 3: case 4:
+                        cout << "Element at position " << index << " is: " << arr[index] << endl;
+                        break;
+                    default:
+                        cout << "Wrong position! Use 0 to 4 only\n";
+                }
+                break;
             }
-        }
-        else if(choice == 2) {
-            cout << "All elements: ";
-            for(int i = 0; i < 5; i++) {
-                cout << arr[i] << " ";
+            case 2: {
+                cout << "All elements: ";
+                for(int i = 0; i < 5; i++) {
+                    cout << arr[i] << " ";
+                }
+                cout << endl;
+                break;
             }
-            cout << endl;
-        }
-        else if(choice == 3) {
-            int pos, num;
-            cout << "Enter position (0-4): ";
-            cin >> pos;
-            if(pos >= 0 && pos < 5) {
-                cout << "Enter new number: ";
-                cin >> num;
-                arr[pos] = num;
-                cout << "Number replaced!\n";
-            } else {
-                cout << "Wrong position! Use 0 to 4 only\n";
+            case 3: {
+                int pos, num;
+                cout << "Enter position (0-4): ";
+                cin >> pos;
+                switch(pos) {
+                    case 0: case 1: case 2: case 3: case 4:
+                        cout << "Enter new number: ";
+                        cin >> num;
+                        arr[pos] = num;
+                        cout << "Number replaced!\n";
+                        break;
+                    default:
+                        cout << "Wrong position! Use 0 to 4 only\n";
+                }
+                break;
             }
-        }
-        else if(choice == 10) {
-            cout << "Goodbye!\n";
-            break;  // Exit the program
-        }
-        else {
-            cout << "This option will be added soon!\n";
+            case 10: {
+                cout << "Goodbye!\n";
+                return 0;  // Exit the program
+            }
+            default: {
+                cout << "This option will be added soon!\n";
+                break;
+            }
         }
         
         // Press enter to continue
