@@ -1,72 +1,71 @@
 #include <iostream>
 using namespace std;
 
-void displayMenu() {
-    cout << "\n=== Array Operations Menu ===\n";
-    cout << "1. Access/Display Elements\n";
-    cout << "2. Append Element\n";
-    cout << "3. Replace Element\n";
-    cout << "4. Insert Element\n";
-    cout << "5. Delete Element\n";
-    cout << "6. Search Element\n";
-    cout << "7. Sort Array\n";
-    cout << "8. Concatenate Arrays\n";
-    cout << "9. Merge Arrays\n";
-    cout << "10. Exit\n";
-    cout << "Enter your choice (1-10): ";
-}
-
-void displayArray(int arr[], int size) {
-    cout << "Array elements: ";
-    for(int i = 0; i < size; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-}
-
 int main() {
-    int arr[100];  // Main array
-    int size = 0;  // Current size of array
+    // Create array with 5 elements
+    int arr[5] = {1, 2, 3, 4, 5};  // Simple array with values 1,2,3,4,5
     int choice;
     
-    // Initialize first 5 elements
-    for(int i = 0; i < 5; i++) {
-        arr[i] = i + 1;  // Values 1,2,3,4,5
-    }
-    size = 5;
-
-    do {
-        displayMenu();
+    while(true) {  // Infinite loop (will break with choice 10)
+        // Display menu
+        cout << "\n=== MENU ===\n";
+        cout << "1. Display one element\n";
+        cout << "2. Display all elements\n";
+        cout << "3. Replace element\n";
+        cout << "4. Insert element\n";
+        cout << "5. Delete element\n";
+        cout << "6. Search element\n";
+        cout << "7. Sort array\n";
+        cout << "8. Join arrays\n";
+        cout << "9. Merge arrays\n";
+        cout << "10. Exit\n";
+        cout << "Choose (1-10): ";
         cin >> choice;
 
-        switch(choice) {
-            case 1: {
-                cout << "\n1. Display specific element\n";
-                cout << "2. Display all elements\n";
-                cout << "Enter choice (1-2): ";
-                int displayChoice;
-                cin >> displayChoice;
-                
-                if(displayChoice == 1) {
-                    cout << "Enter index (0-" << size-1 << "): ";
-                    int index;
-                    cin >> index;
-                    if(index >= 0 && index < size)
-                        cout << "Element at index " << index << " is: " << arr[index] << endl;
-                    else
-                        cout << "Invalid index!\n";
-                } else if(displayChoice == 2) {
-                    displayArray(arr, size);
-                }
-                break;
+        // Handle user choice
+        if(choice == 1) {
+            int index;
+            cout << "Enter position (0-4): ";
+            cin >> index;
+            if(index >= 0 && index < 5) {
+                cout << "Element at position " << index << " is: " << arr[index] << endl;
+            } else {
+                cout << "Wrong position! Use 0 to 4 only\n";
             }
-            case 10:
-                cout << "Exiting program...\n";
-                break;
-            default:
-                cout << "Other operations will be implemented soon!\n";
         }
-    } while(choice != 10);
-
+        else if(choice == 2) {
+            cout << "All elements: ";
+            for(int i = 0; i < 5; i++) {
+                cout << arr[i] << " ";
+            }
+            cout << endl;
+        }
+        else if(choice == 3) {
+            int pos, num;
+            cout << "Enter position (0-4): ";
+            cin >> pos;
+            if(pos >= 0 && pos < 5) {
+                cout << "Enter new number: ";
+                cin >> num;
+                arr[pos] = num;
+                cout << "Number replaced!\n";
+            } else {
+                cout << "Wrong position! Use 0 to 4 only\n";
+            }
+        }
+        else if(choice == 10) {
+            cout << "Goodbye!\n";
+            break;  // Exit the program
+        }
+        else {
+            cout << "This option will be added soon!\n";
+        }
+        
+        // Press enter to continue
+        cout << "\nPress Enter to continue...";
+        cin.ignore();
+        cin.get();
+    }
+    
     return 0;
 }
