@@ -9,15 +9,15 @@ int main() {
     while(true) {  // Infinite loop (will break with choice 10)
         // Display menu
         cout << "\n=== MENU ===\n";
-        cout << "1. Display one element\n";
-        cout << "2. Display all elements\n";
-        cout << "3. Replace element\n";
-        cout << "4. Insert element\n";
-        cout << "5. Delete element\n";
-        cout << "6. Search element\n";
-        cout << "7. Sort array\n";
-        cout << "8. Join arrays\n";
-        cout << "9. Merge arrays\n";
+        cout << "1. Access\n";
+        cout << "2. Append\n";
+        cout << "3. Replace\n";
+        cout << "4. Insertion\n";
+        cout << "5. Deletion\n";
+        cout << "6. Search\n";
+        cout << "7. Sorting\n";
+        cout << "8. Catenate\n";
+        cout << "9. Merging\n";
         cout << "10. Exit\n";
         cout << "Choose (1-10): ";
         cin >> choice;
@@ -25,40 +25,44 @@ int main() {
         // Handle user choice using switch
         switch(choice) {
             case 1: {
-                int index;
-                cout << "Enter position (0-4): ";
-                cin >> index;
-                switch(index) {
-                    case 0: case 1: case 2: case 3: case 4:
-                        cout << "Element at position " << index << " is: " << arr[index] << endl;
+                int position;
+                cout << "Enter position (1-5): ";
+                cin >> position;
+                // Adjust position to array index (subtract 1)
+                int index = position - 1;
+                switch(position) {
+                    case 1: case 2: case 3: case 4: case 5:
+                        cout << "Element at position " << position << " is: " << arr[index] << endl;
                         break;
                     default:
-                        cout << "Wrong position! Use 0 to 4 only\n";
+                        cout << "Wrong position! Use 1 to 5 only\n";
                 }
                 break;
             }
             case 2: {
-                cout << "All elements: ";
-                for(int i = 0; i < 5; i++) {
-                    cout << arr[i] << " ";
-                }
-                cout << endl;
+                cout << "Append functionality will be added soon!\n";
                 break;
             }
             case 3: {
-                int pos, num;
-                cout << "Enter position (0-4): ";
-                cin >> pos;
-                switch(pos) {
-                    case 0: case 1: case 2: case 3: case 4:
+                int position, num;
+                cout << "Enter position (1-5): ";
+                cin >> position;
+                // Adjust position to array index (subtract 1)
+                int index = position - 1;
+                switch(position) {
+                    case 1: case 2: case 3: case 4: case 5:
                         cout << "Enter new number: ";
                         cin >> num;
-                        arr[pos] = num;
+                        arr[index] = num;
                         cout << "Number replaced!\n";
                         break;
                     default:
-                        cout << "Wrong position! Use 0 to 4 only\n";
+                        cout << "Wrong position! Use 1 to 5 only\n";
                 }
+                break;
+            }
+            case 4: case 5: case 6: case 7: case 8: case 9: {
+                cout << "This functionality will be added soon!\n";
                 break;
             }
             case 10: {
@@ -66,7 +70,7 @@ int main() {
                 return 0;  // Exit the program
             }
             default: {
-                cout << "This option will be added soon!\n";
+                cout << "Invalid choice! Please select 1-10\n";
                 break;
             }
         }
